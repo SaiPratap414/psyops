@@ -6,8 +6,8 @@ import { Toaster } from "react-hot-toast";
 const font = LocalFont({ src: "../assets/fonts/ChelseaMarket-Regular.ttf" });
 
 export const metadata = {
-  title: "Tosser - #1 Most Trusted Place to Flip",
-  description: "Tosser - #1 Most Trusted Place to Flip",
+  title: "psyopbet",
+  description: "psyopbet",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
