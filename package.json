@@ -1,0 +1,36 @@
+{
+  "name": "tosser-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "generate": "npx typechain --target=web3-v1 './src/abis/*.json' --out-dir './src/types'"
+  },
+  "dependencies": {
+    "@metamask/detect-provider": "^2.0.0",
+    "@types/node": "18.16.3",
+    "@types/react": "18.2.5",
+    "@types/react-dom": "18.2.3",
+    "bn.js": "^5.2.1",
+    "classnames": "^2.3.2",
+    "eslint": "8.39.0",
+    "eslint-config-next": "13.4.0",
+    "ethers": "^5.0.0",
+    "firebase": "^9.21.0",
+    "moment": "^2.29.4",
+    "next": "13.4.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "sass": "^1.62.1",
+    "typescript": "5.0.4",
+    "web3": "^1.9.0"
+  },
+  "devDependencies": {
+    "@typechain/web3-v1": "^6.0.2",
+    "typechain": "^8.1.1"
+  }
+}

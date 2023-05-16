@@ -1,0 +1,294 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        { "internalType": "address", "name": "_randomizer", "type": "address" },
+        { "internalType": "address", "name": "_houseCut", "type": "address" },
+        { "internalType": "address", "name": "_bankRoll", "type": "address" },
+        { "internalType": "uint256", "name": "_callbackGasLimit", "type": "uint256" }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    { "inputs": [], "name": "ArrayLengthCantBeZero", "type": "error" },
+    {
+      "inputs": [{ "internalType": "address", "name": "_owner", "type": "address" }],
+      "name": "CallerIsNotOwner",
+      "type": "error"
+    },
+    { "inputs": [], "name": "CallerNotAuthorizedForRefund", "type": "error" },
+    { "inputs": [], "name": "CallerNotRandomizer", "type": "error" },
+    {
+      "inputs": [
+        { "internalType": "address", "name": "_to", "type": "address" },
+        { "internalType": "uint256", "name": "_amount", "type": "uint256" }
+      ],
+      "name": "ETHTransferFailed",
+      "type": "error"
+    },
+    {
+      "inputs": [{ "internalType": "uint256", "name": "betAmount", "type": "uint256" }],
+      "name": "InvalidBetAmount",
+      "type": "error"
+    },
+    {
+      "inputs": [{ "internalType": "uint256", "name": "etherSent", "type": "uint256" }],
+      "name": "NotEnoughEtherSent",
+      "type": "error"
+    },
+    { "inputs": [], "name": "NothingToWithdraw", "type": "error" },
+    { "inputs": [], "name": "ReEntrantCall", "type": "error" },
+    {
+      "anonymous": false,
+      "inputs": [
+        { "indexed": false, "internalType": "address", "name": "_bankRoller", "type": "address" },
+        { "indexed": false, "internalType": "address", "name": "owner", "type": "address" }
+      ],
+      "name": "BankRollSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        { "indexed": true, "internalType": "uint256", "name": "betRequestDeniedId", "type": "uint256" },
+        { "indexed": true, "internalType": "address", "name": "user", "type": "address" },
+        { "indexed": false, "internalType": "uint256", "name": "betAmount", "type": "uint256" },
+        { "indexed": false, "internalType": "uint256", "name": "bankRollBalance", "type": "uint256" }
+      ],
+      "name": "BetRequestDenied",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        { "indexed": false, "internalType": "uint256", "name": "_callBackGasLimit", "type": "uint256" },
+        { "indexed": false, "internalType": "address", "name": "owner", "type": "address" }
+      ],
+      "name": "CallBackGasLimitSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        { "indexed": true, "internalType": "address", "name": "from", "type": "address" },
+        { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }
+      ],
+      "name": "EtherDeposited",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        { "indexed": true, "internalType": "address", "name": "owner", "type": "address" },
+        { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }
+      ],
+      "name": "EtherWithdrawn",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        { "indexed": false, "internalType": "uint256[]", "name": "amount", "type": "uint256[]" },
+        { "indexed": false, "internalType": "bool", "name": "isAccepted", "type": "bool" }
+      ],
+      "name": "FlipAmountsSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        { "indexed": false, "internalType": "uint256", "name": "requestId", "type": "uint256" },
+        { "indexed": false, "internalType": "address", "name": "user", "type": "address" }
+      ],
+      "name": "FlipRequest",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        { "indexed": true, "internalType": "address", "name": "user", "type": "address" },
+        { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
+        { "indexed": false, "internalType": "uint256", "name": "seed", "type": "uint256" },
+        { "indexed": false, "internalType": "enum CoinFlip.CoinFlipValues", "name": "prediction", "type": "uint8" },
+        { "indexed": false, "internalType": "enum CoinFlip.CoinFlipValues", "name": "result", "type": "uint8" }
+      ],
+      "name": "FlipResult",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        { "indexed": false, "internalType": "address", "name": "_houseCut", "type": "address" },
+        { "indexed": false, "internalType": "address", "name": "owner", "type": "address" }
+      ],
+      "name": "HouseCutSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        { "indexed": true, "internalType": "address", "name": "user", "type": "address" },
+        { "indexed": true, "internalType": "uint256", "name": "vrfDepositedInRandomizer", "type": "uint256" },
+        { "indexed": true, "internalType": "uint256", "name": "vrfConsumedByRandomizer", "type": "uint256" }
+      ],
+      "name": "LastGameDifferenceInVRFFee",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" },
+        { "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "bankRoll",
+      "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "callbackGasLimit",
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "name": "coinFlipGames",
+      "outputs": [
+        { "internalType": "uint256", "name": "betAmount", "type": "uint256" },
+        { "internalType": "uint256", "name": "vrfFeeSent", "type": "uint256" },
+        { "internalType": "uint256", "name": "seed", "type": "uint256" },
+        { "internalType": "address", "name": "user", "type": "address" },
+        { "internalType": "enum CoinFlip.CoinFlipValues", "name": "prediction", "type": "uint8" },
+        { "internalType": "uint8", "name": "result", "type": "uint8" },
+        { "internalType": "bool", "name": "isGameVRFDifferenceWithdrawn", "type": "bool" }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "uint256", "name": "betAmount", "type": "uint256" },
+        { "internalType": "enum CoinFlip.CoinFlipValues", "name": "_coinFlipValue", "type": "uint8" }
+      ],
+      "name": "flip",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "name": "flipAmounts",
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "houseCut",
+      "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "randomizer",
+      "outputs": [{ "internalType": "contract IRandomizer", "name": "", "type": "address" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "uint256", "name": "_id", "type": "uint256" },
+        { "internalType": "bytes32", "name": "_value", "type": "bytes32" }
+      ],
+      "name": "randomizerCallback",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "uint256", "name": "amount", "type": "uint256" }],
+      "name": "randomizerWithdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "uint256", "name": "requestId", "type": "uint256" }],
+      "name": "refundVRFFeeIfAny",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "address", "name": "_bankRoll", "type": "address" }],
+      "name": "setBankRollAddress",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "uint256", "name": "_callbackGasLimit", "type": "uint256" }],
+      "name": "setCallBackGasLimit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "uint256[]", "name": "amounts", "type": "uint256[]" },
+        { "internalType": "bool", "name": "isAccepted", "type": "bool" }
+      ],
+      "name": "setFlipAmounts",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "address", "name": "_houseCut", "type": "address" }],
+      "name": "setHouseCutAddress",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "address", "name": "_newOwner", "type": "address" }],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "address", "name": "", "type": "address" },
+        { "internalType": "uint256", "name": "", "type": "uint256" }
+      ],
+      "name": "userToGames",
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "uint256", "name": "amount", "type": "uint256" }],
+      "name": "withdrawEther",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    { "stateMutability": "payable", "type": "receive" }
+  ]
+}
