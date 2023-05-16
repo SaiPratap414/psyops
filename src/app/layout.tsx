@@ -3,7 +3,7 @@ import "./globals.scss";
 import LocalFont from "next/font/local";
 import { Toaster } from "react-hot-toast";
 
-const font = LocalFont({ src: "../assets/fonts/red-alert-lan.ttf" });
+const font = LocalFont({ src: "../assets/fonts/ChelseaMarket-Regular.ttf" });
 
 export const metadata = {
   title: "Tosser - #1 Most Trusted Place to Flip",

@@ -30,7 +30,7 @@ import FlipCoin from "../../assets/images/flip.gif";
 import LocalFont from "next/font/local";
 import { useRouter } from "next/navigation";
 
-const font = LocalFont({ src: "../../assets/fonts/red-alert-inet.ttf" });
+const font = LocalFont({ src: "../../assets/fonts/ChelseaMarket-Regular.ttf" });
 
 enum Prediction {
   HEADS,

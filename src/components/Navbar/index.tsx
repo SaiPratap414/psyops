@@ -25,7 +25,7 @@ import useClickOutside from "@/hooks/useClickOutside";
 import moment from "moment";
 import Link from "next/link";
 
-const font = LocalFont({ src: "../../assets/fonts/red-alert-inet.ttf" });
+const font = LocalFont({ src: "../../assets/fonts/ChelseaMarket-Regular.ttf" });
 
 export default function Navbar(props: any) {
   const wallet = useMetamask();

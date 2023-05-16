@@ -24,7 +24,7 @@ import TosserLogo from "../assets/images/crown.png";
 import styles from "./page.module.scss";
 import moment from "moment";
 
-const font = LocalFont({ src: "../assets/fonts/red-alert-inet.ttf" });
+const font = LocalFont({ src: "../assets/fonts/ChelseaMarket-Regular.ttf" });
 
 export default function Home() {
   const wallet = useMetamask();
